@@ -167,7 +167,7 @@ class silk_profile(object):
                         self.profile['end_time'] = timezone.now()
                         self._finalise_queries()
                 return result
-
+            wrapped_target.__silk_wrapped__ = True
             return wrapped_target
         else:
             Logger.warn('Cannot execute silk_profile as silk is not installed correctly.')

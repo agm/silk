@@ -58,6 +58,8 @@ def profile_function_or_method(module, func, name=None):
     decorator = silk_profile(name, _dynamic=True)
     func_name = func
     cls, func = _get_func(module, func_name)
+    if hasattr(func, '__silk_wrapped__'):
+        return
     wrapped_target = decorator(func)
     if cls:
         setattr(cls, func_name.split('.')[-1], wrapped_target)
